@@ -1,10 +1,8 @@
 from rest_framework import serializers
-
-
-from  product.models import Product
+from product.models import Product
 from product.serializers.product_serializer import ProductSerializer
 
-class OrderSerializer(serializers.ModelSeri):
+class OrderSerializer(serializers.ModelSerializer):
     product = ProductSerializer(required=True, many= True)
     total = serializers.SerializerMethodField()
 
