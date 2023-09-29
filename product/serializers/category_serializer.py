@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from product.models.Category import Category
+from product.models.category import Category
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,4 +10,3 @@ class CategorySerializer(serializers.ModelSerializer):
             'description',
             'active',
         ]
-        extra_kwargs = {'slug': {'required':Falseg}}

@@ -25,7 +25,7 @@ class CategoryViewSet(APITestCase):
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         category_data = json.loads(response.content)
 
-        self.assertEquals(category_data['title'][0]['title'], self.category.title)
+        self.assertEquals(category_data[0]['title'], self.category.title)
 
 
     def test_create_category(self):
@@ -40,7 +40,6 @@ class CategoryViewSet(APITestCase):
             content_type='application/json'
         )
 
-        import pdb; pdb.set_trace()
 
         self.assertEquals(response.status_code, status.HTTP_201_CREATED)
 

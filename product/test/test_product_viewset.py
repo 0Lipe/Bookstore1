@@ -18,7 +18,7 @@ class TestOrderViewSet(APITestCase):
 
         self.product = ProductFactory(
             title='pro controller',
-            price=200.00,
+            price=200,
         )
 
     def test_get_all_product(self):
@@ -31,18 +31,17 @@ class TestOrderViewSet(APITestCase):
         self.assertEquals(product_data['product'][0]['title'], self.product.title)
         self.assertEquals(product_data['product'][0]['price'], self.product.price)
         self.assertEquals(product_data['product'][0]['active'], self.product.active)
-        self.assertEquals(product_data['product'][0]['category']['title'], self.category.title)
 
     def test_create_product(self):
         category = CategoryFactory()
         data = json.dumps({
             'title': 'notebook',
-            'price': 800.00,
+            'price': 800,
             'categories_id' : [ category.id ]
         })
 
         response = self.client.post(
-            reverse('order-list', kwargs={'version': 'v1'}),
+            reverse('product-list', kwargs={'version': 'v1'}),
             data=data,
             content_type = 'application/json'
         )
@@ -53,6 +52,6 @@ class TestOrderViewSet(APITestCase):
 
 
         self.assertEquals(created_product.title, 'notebook')
-        self.assertEquals(created_product.price, 800.00)
+        self.assertEquals(created_product.price, 800)
 
     

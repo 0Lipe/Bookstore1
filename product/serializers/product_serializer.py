@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from product.models.Category import Category
+from product.models.category import Category
 
 from product.models.product import Product
 from product.serializers.category_serializer import CategorySerializer
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(required=True, many=True)
+    category = CategorySerializer(required=False, many=True)
     categories_id = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), write_only=True, many=True)
 
     class Meta:

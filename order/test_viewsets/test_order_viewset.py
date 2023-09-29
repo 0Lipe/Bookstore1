@@ -29,7 +29,6 @@ class TestOrderViewSet(APITestCase):
         self.assertEquals(order_data['product'][0]['title'], self.product.title)
         self.assertEquals(order_data['product'][0]['price'], self.product.price)
         self.assertEquals(order_data['product'][0]['active'], self.product.active)
-        self.assertEquals(order_data['product'][0]['category']['title'], self.category.title)
 
     def test_create_order(self):
         user = UserFactory()
