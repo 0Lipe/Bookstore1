@@ -3,9 +3,8 @@ from product.models import Product
 from product.serializers.product_serializer import ProductSerializer
 from order.models import Order
 
-
 class OrderSerializer(serializers.ModelSerializer):
-    product = ProductSerializer(required=True, many= True)
+    product = ProductSerializer(required=True, many=True)
     product_id = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), write_only=True, many=True)
     total = serializers.SerializerMethodField()
 
@@ -23,7 +22,6 @@ class OrderSerializer(serializers.ModelSerializer):
         user_data = validated_data.pop('user')
 
         order = Order.objects.create(user=user_data)
-        for product in product_data:
-            order.product.add(product)
+        order.products.set(product_data)  # Set the many-to-many relationship
 
-        return order
+        return order  # Corrected the typo here
